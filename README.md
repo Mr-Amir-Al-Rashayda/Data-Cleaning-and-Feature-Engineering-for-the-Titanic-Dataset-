@@ -1,87 +1,80 @@
-======================================================================= CASE STUDY: DATA CLEANING AND FEATURE ENGINEERING FOR THE TITANIC DATASET
-This repository contains the code and summary for a case study on the Titanic dataset, conducted as part of the Intelligent Systems Laboratory at Birzeit University. The project demonstrates a comprehensive data preprocessing and model optimization pipeline.
+# CASE STUDY: Data Cleaning and Feature Engineering for the Titanic Dataset
 
---- ABSTRACT ---
+This repository contains the code and documentation for a case study conducted as part of the Intelligent Systems Laboratory at Birzeit University. The objective is to demonstrate a full data preprocessing and model optimization pipeline on the Titanic passenger dataset, culminating in a comparison of multiple classifiers.
 
-The goal of this study is to implement and evaluate a full data preprocessing and model optimization pipeline on the Titanic dataset. The process involves several key stages: data cleaning, feature engineering, dimensionality reduction using Principal Component Analysis (PCA), and model validation.
+---
 
-The effectiveness of the pipeline was measured by training and comparing multiple classifiers. The models included a baseline Random Forest, a Random Forest on the fully preprocessed data, and optimized versions of both Random Forest and Support Vector Machine (SVM) models using GridSearchCV.
+## Table of Contents
 
-The results show that a tuned Support Vector Machine (SVM), trained on the preprocessed and lower-dimensional data, achieved a test accuracy of 81.56%. This performance is nearly on par with the 82.12% accuracy from the baseline model, which used a more complex feature set. This demonstrates that a systematic preprocessing and tuning pipeline can produce a simpler, more efficient model with comparable predictive power.
+1. [Abstract](#abstract)  
+2. [Methodology Pipeline](#methodology-pipeline)  
+3. [Repository Structure](#repository-structure)  
+4. [Installation](#installation)  
+5. [Usage](#usage)  
+6. [Results](#results)  
+7. [Conclusion](#conclusion)  
+8. [Contact](#contact)  
 
---- METHODOLOGY PIPELINE ---
+---
 
-The experiment follows a systematic data preprocessing and modeling pipeline, which is fully implemented in the CaseStudy1.ipynb Jupyter Notebook.
+## Abstract
 
-Data Loading and EDA: The Titanic dataset is loaded, and an initial exploratory data analysis is performed to identify issues like missing values.
+The goal of this study is to implement and evaluate an end-to-end data preprocessing and model optimization pipeline on the Titanic dataset. Key stages include data cleaning, feature engineering, dimensionality reduction via Principal Component Analysis (PCA), and model validation. Four models were compared:
 
-Data Cleaning:
+- Baseline Random Forest on minimally processed data  
+- Random Forest on fully preprocessed data  
+- Hyperparameter-tuned Random Forest  
+- Hyperparameter-tuned Support Vector Machine (SVM)  
 
-The deck column is dropped due to a high number of missing values.
+The tuned SVM, trained on the lower-dimensional feature set, achieved an accuracy of **81.56%**, closely matching the **82.12%** of the complex baseline model.
 
-Missing age values are imputed with the median.
+---
 
-Missing embarked values are imputed with the mode.
+## Methodology Pipeline
 
-Outliers in the fare feature are managed by capping extreme values using the Interquartile Range (IQR) method.
+The full workflow is implemented in `CaseStudy1.ipynb` and comprises:
 
-Feature Engineering and Selection:
+1. **Data Loading & EDA**  
+   - Inspect missing values and feature distributions  
 
-Redundant features (alive, class, embark_town, who, adult_male, alone) are removed.
+2. **Data Cleaning**  
+   - Drop the `deck` column due to high missingness  
+   - Impute `Age` with median, `Embarked` with mode  
+   - Cap `Fare` outliers using the IQR method  
 
-Categorical features (sex, embarked) are encoded into a numerical format.
+3. **Feature Engineering & Selection**  
+   - Remove redundant columns (`alive`, `class`, `embark_town`, `who`, `adult_male`, `alone`)  
+   - One-hot encode categorical variables (`Sex`, `Embarked`)  
+   - Scale numerical features with `StandardScaler`  
 
-Numerical features are scaled using StandardScaler.
+4. **Dimensionality Reduction**  
+   - Apply PCA to reduce from 8 original features to 6 principal components (95% variance retained)  
 
-Dimensionality Reduction:
+5. **Model Training & Hyperparameter Tuning**  
+   - Split data into training and test sets  
+   - Train four models:  
+     1. Baseline RF  
+     2. Preprocessed RF  
+     3. GridSearch-tuned RF  
+     4. GridSearch-tuned SVM  
 
-Principal Component Analysis (PCA) is applied to reduce the feature space from 8 to 6 components while retaining 95% of the data's variance.
+6. **Final Evaluation**  
+   - Compare accuracy, precision, recall, and F1-scores on the held-out test set  
 
-Model Training and Validation:
+---
 
-The dataset is split into training and testing sets.
+## Repository Structure
 
-Four models are trained and evaluated for comparison:
+- `CaseStudy1.ipynb` — Jupyter Notebook with the full implementation  
+- `CaseStudy1_1222596.pdf` — Written report and figures  
+- `requirements.txt` — Project dependencies  
+- `README.md` — This overview  
 
-A baseline Random Forest on minimally processed data.
+---
 
-A standard Random Forest on the fully preprocessed data.
+## Installation
 
-A tuned Random Forest using GridSearchCV.
+Requires Python 3.8+. Install dependencies with:
 
-A tuned Support Vector Machine (SVM) using GridSearchCV.
-
---- RESULTS ---
-
-The analysis identified gender, passenger class, and fare as the most significant predictors of survival. The final performance comparison of all models is summarized below:
-
-+--------------------------------+----------+---------------------+
-| Model                          | Accuracy | Weighted F1-Score   |
-+--------------------------------+----------+---------------------+
-| Baseline RF                    | 0.8212   | 0.82                |
-| Tuned SVM (with PCA)           | 0.8156   | 0.81                |
-| Tuned RF (with PCA)            | 0.8045   | 0.80                |
-| Preprocessed RF (with PCA)     | 0.7989   | 0.80                |
-+--------------------------------+----------+---------------------+
-
---- CONCLUSION ---
-
-The data preprocessing pipeline was highly effective. While the baseline Random Forest model achieved the highest accuracy, the tuned SVM model performed nearly as well on a simpler, lower-dimensional dataset. This outcome highlights the importance of a thorough preprocessing workflow and demonstrates a successful balance between model performance and complexity.
-
---- HOW TO USE ---
-
-To run this analysis, you will need a Python environment with Jupyter Notebook and the following libraries installed:
-
-pandas
-
-seaborn
-
-matplotlib
-
-scikit-learn
-
-Clone or download this repository.
-
-Open the CaseStudy1.ipynb file in Jupyter Notebook or JupyterLab.
-
-Run the cells sequentially to execute the entire data analysis and modeling pipeline.
+```bash
+pip install -r requirements.txt
