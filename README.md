@@ -1,14 +1,16 @@
-Case Study: Data Cleaning and Feature Engineering for the Titanic Dataset
+======================================================================= CASE STUDY: DATA CLEANING AND FEATURE ENGINEERING FOR THE TITANIC DATASET
 This repository contains the code and summary for a case study on the Titanic dataset, conducted as part of the Intelligent Systems Laboratory at Birzeit University. The project demonstrates a comprehensive data preprocessing and model optimization pipeline.
 
-📖 Abstract
+--- ABSTRACT ---
+
 The goal of this study is to implement and evaluate a full data preprocessing and model optimization pipeline on the Titanic dataset. The process involves several key stages: data cleaning, feature engineering, dimensionality reduction using Principal Component Analysis (PCA), and model validation.
 
 The effectiveness of the pipeline was measured by training and comparing multiple classifiers. The models included a baseline Random Forest, a Random Forest on the fully preprocessed data, and optimized versions of both Random Forest and Support Vector Machine (SVM) models using GridSearchCV.
 
 The results show that a tuned Support Vector Machine (SVM), trained on the preprocessed and lower-dimensional data, achieved a test accuracy of 81.56%. This performance is nearly on par with the 82.12% accuracy from the baseline model, which used a more complex feature set. This demonstrates that a systematic preprocessing and tuning pipeline can produce a simpler, more efficient model with comparable predictive power.
 
-⚙️ Methodology Pipeline
+--- METHODOLOGY PIPELINE ---
+
 The experiment follows a systematic data preprocessing and modeling pipeline, which is fully implemented in the CaseStudy1.ipynb Jupyter Notebook.
 
 Data Loading and EDA: The Titanic dataset is loaded, and an initial exploratory data analysis is performed to identify issues like missing values.
@@ -49,43 +51,25 @@ A tuned Random Forest using GridSearchCV.
 
 A tuned Support Vector Machine (SVM) using GridSearchCV.
 
-📊 Results
+--- RESULTS ---
+
 The analysis identified gender, passenger class, and fare as the most significant predictors of survival. The final performance comparison of all models is summarized below:
 
-Model
++--------------------------------+----------+---------------------+
+| Model                          | Accuracy | Weighted F1-Score   |
++--------------------------------+----------+---------------------+
+| Baseline RF                    | 0.8212   | 0.82                |
+| Tuned SVM (with PCA)           | 0.8156   | 0.81                |
+| Tuned RF (with PCA)            | 0.8045   | 0.80                |
+| Preprocessed RF (with PCA)     | 0.7989   | 0.80                |
++--------------------------------+----------+---------------------+
 
-Accuracy
+--- CONCLUSION ---
 
-Weighted F1-Score
-
-Baseline RF
-
-0.8212
-
-0.82
-
-Tuned SVM (with PCA)
-
-0.8156
-
-0.81
-
-Tuned RF (with PCA)
-
-0.8045
-
-0.80
-
-Preprocessed RF (with PCA)
-
-0.7989
-
-0.80
-
-🚀 Conclusion
 The data preprocessing pipeline was highly effective. While the baseline Random Forest model achieved the highest accuracy, the tuned SVM model performed nearly as well on a simpler, lower-dimensional dataset. This outcome highlights the importance of a thorough preprocessing workflow and demonstrates a successful balance between model performance and complexity.
 
-💻 How to Use
+--- HOW TO USE ---
+
 To run this analysis, you will need a Python environment with Jupyter Notebook and the following libraries installed:
 
 pandas
